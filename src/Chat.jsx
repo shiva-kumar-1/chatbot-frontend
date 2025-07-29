@@ -138,28 +138,42 @@ function Chat({ token, logout }) {
 
       {/* Sticky Input */}
       <form
-        onSubmit={handleSubmit}
-        className="fixed bottom-0 left-0 w-full bg-black/70 border-t border-white/10 px-4 py-4 z-50"
-      >
-        <div className="max-w-4xl mx-auto flex items-center space-x-2">
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Type your message..."
-            autoComplete="off"
-            className="flex-1 px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            disabled={loading}
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className="p-2 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition"
-          >
-            <FiSend size={18} />
-          </button>
-        </div>
-      </form>
+  onSubmit={handleSubmit}
+  className="fixed bottom-0 left-0 w-full bg-black/70 border-t border-white/10 px-4 py-4 z-50"
+  autoComplete="off"
+>
+  <div className="max-w-4xl mx-auto flex items-center space-x-2">
+    {/* Dummy input to prevent autofill */}
+    <input
+      type="text"
+      name="dummy"
+      autoComplete="username"
+      style={{ display: 'none' }}
+    />
+    
+    <input
+      type="search"
+      name="chatInput"
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      spellCheck="false"
+      inputMode="text"
+      value={inputMessage}
+      onChange={(e) => setInputMessage(e.target.value)}
+      placeholder="Type your message..."
+      className="flex-1 px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      disabled={loading}
+    />
+    <button
+      type="submit"
+      disabled={loading}
+      className="p-2 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition"
+    >
+      <FiSend size={18} />
+    </button>
+  </div>
+</form>
 
       {error && <p className="text-red-400 text-sm text-center mt-2">{error}</p>}
     </div>
